@@ -1,0 +1,24 @@
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-sm-6 col-xs-12 post" ng-repeat="post in ctrl.posts | limitTo: ctrl.visiblePosts : (ctrl.activePage-1) * ctrl.visiblePosts">
+			<img ng-src="{{ctrl.mediaImg[$index]}}" alt="logo">
+			{{post.title.rendered}}
+			<p>{{post.excerpt.rendered}}</p>
+			<button ng-click='ctrl.showPost(post.id)'>Show</button>			
+		</div>
+	</div>
+	<div class="row">
+		<nav class="align-center">
+			<ul class="pagination justify-content-center">
+			   <li ng-class="ctrl.activePage == 1 ? 'page-item disabled' : 'page-item'" ng-click='ctrl.changePage(-1,$event)'>
+			      <a class="page-link" href="#">Previous</a>
+			   </li>
+			   <li ng-repeat='i in ctrl.buildPages()' ng-click='ctrl.changePage(i,$event)' ng-class="ctrl.activePage == i ? 'page-item active' : 'page-item'"><a class="page-link" href="#">{{i}}</a></li> 
+			   <li class="page-item" ng-click='ctrl.changePage(0,$event)'>
+			      <a class="page-link" href="#">Next</a>
+			   </li>
+			</ul>
+		</nav>
+	</div>
+</div>
+
